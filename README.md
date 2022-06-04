@@ -3,13 +3,14 @@ Verify that the post-processing merged into FaceMesh works correctly. The object
 
 # 1. Pre-trained model
 https://github.com/PINTO0309/PINTO_model_zoo/tree/main/032_FaceMesh
+
 https://github.com/google/mediapipe/tree/master/mediapipe/modules/face_landmark/face_landmark.tflite
 
 # 2. ModelCard
+
 https://drive.google.com/file/d/1QvwWNfFoweGVjsXF3DXzcrCnz-mx-Lha/preview
+
 https://github.com/tensorflow/tfjs-models/tree/master/face-landmarks-detection
-
-
 
 - Standard facial landmark 68 points
 
