@@ -27,7 +27,7 @@ https://github.com/tensorflow/tfjs-models/tree/master/face-landmarks-detection
   - crop_width: int32 `[N, 1]`, Width of face image reflecting about 25% margin to the `left` and `right` of object detection results.
   - crop_height: int32 `[N, 1]`, Height of face image reflecting about 25% margin to the `top` and `bottom` object detection results.
   
-  ![icon_design drawio (1)](https://user-images.githubusercontent.com/33194443/172016038-8c0928a4-d8d2-4966-b131-b1ca778097d4.png)
+  ![icon_design drawio (2)](https://user-images.githubusercontent.com/33194443/172016342-f67b3e28-db0e-4d2d-af12-2ef38b08395b.png)
 
 - OUTPUT:
   - final_landmarks: int32 `[N, 468, 3]`, `X, Y, Z`
