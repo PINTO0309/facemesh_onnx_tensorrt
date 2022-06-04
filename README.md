@@ -7,6 +7,23 @@ https://github.com/google/mediapipe/tree/master/mediapipe/modules/face_landmark/
 
 # 2. ModelCard
 https://drive.google.com/file/d/1QvwWNfFoweGVjsXF3DXzcrCnz-mx-Lha/preview
+https://github.com/tensorflow/tfjs-models/tree/master/face-landmarks-detection
+
+
+
+- Standard facial landmark 68 points
+
+  ![image](https://user-images.githubusercontent.com/33194443/172013276-3b640648-8bfd-4d2a-b435-4dc610ebc0bb.png)
+
+- Full facemesh 468 points
+
+  ![image](https://user-images.githubusercontent.com/33194443/172013054-4a826611-cb5b-4dfb-ab14-addf0acaa06e.png)
+
+- INPUT:
+  - input: float32 [N,3,192,192]
+- OUTPUT:
+  - final_landmarks: int32 [1,468,3]
+  - score: float32 [N,1]
 
 # 3. Benchmark
 ## 3-1. 1 batch + ONNX + TensorRT, 10 times loop
