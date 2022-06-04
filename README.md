@@ -20,10 +20,10 @@ https://github.com/tensorflow/tfjs-models/tree/master/face-landmarks-detection
   ![image](https://user-images.githubusercontent.com/33194443/172013054-4a826611-cb5b-4dfb-ab14-addf0acaa06e.png)
 
 - INPUT:
-  - input: float32 [N,3,192,192]
+  - input: float32 `[N, 3, 192, 192]`
 - OUTPUT:
-  - final_landmarks: int32 [1,468,3]
-  - score: float32 [N,1]
+  - final_landmarks: int32 `[N, 468, 3]`, `X, Y, Z`
+  - score: float32 `[N, 1]`
 
 # 3. Benchmark
 ## 3-1. 1 batch + ONNX + TensorRT, 10 times loop
