@@ -5,8 +5,11 @@ Verify that the post-processing merged into FaceMesh works correctly. The object
 https://github.com/PINTO0309/PINTO_model_zoo/tree/main/032_FaceMesh
 https://github.com/google/mediapipe/tree/master/mediapipe/modules/face_landmark/face_landmark.tflite
 
-# 2. Benchmark
-## 2-1. 1 batch + ONNX + TensorRT, 10 times loop
+# 2. ModelCard
+https://drive.google.com/file/d/1QvwWNfFoweGVjsXF3DXzcrCnz-mx-Lha/preview
+
+# 3. Benchmark
+## 3-1. 1 batch + ONNX + TensorRT, 10 times loop
 ```bash
 $ sit4onnx \
 --input_onnx_file_path face_mesh_192x192_post.onnx
@@ -24,7 +27,7 @@ INFO: avg elapsed time per pred:  0.5556106567382812 ms
 INFO: output_name.1: score shape: [1, 1] dtype: float32
 INFO: output_name.2: final_landmarks shape: [1, 468, 3] dtype: int32
 ```
-## 2-2. 100 batch + ONNX + TensorRT, 10 times loop
+## 3-2. 100 batch + ONNX + TensorRT, 10 times loop
 ```bash
 $ sit4onnx \
 --input_onnx_file_path face_mesh_Nx3x192x192_post.onnx \
