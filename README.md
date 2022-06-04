@@ -22,6 +22,10 @@ https://github.com/tensorflow/tfjs-models/tree/master/face-landmarks-detection
 
 - INPUT:
   - input: float32 `[N, 3, 192, 192]`
+  - crop_x1: int32 `[N, 1]`, Coordinates reflecting a 25% margin on the `X1` coordinates of the object detection result.
+  - crop_y1: int32 `[N, 1]`, Coordinates reflecting a 25% margin on the `Y1` coordinates of the object detection result.
+  - crop_width: int32 `[N, 1]`, Width of face image reflecting 25% margin to the `left` and `right` of object detection results.
+  - crop_height: int32 `[N, 1]`, Height of face image reflecting 25% margin to the `top` and `bottom` object detection results.
 - OUTPUT:
   - final_landmarks: int32 `[N, 468, 3]`, `X, Y, Z`
   - score: float32 `[N, 1]`
