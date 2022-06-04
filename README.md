@@ -21,17 +21,31 @@ https://github.com/tensorflow/tfjs-models/tree/master/face-landmarks-detection
   ![image](https://user-images.githubusercontent.com/33194443/172013054-4a826611-cb5b-4dfb-ab14-addf0acaa06e.png)
 
 - INPUT:
-  - `input`: `float32 [N, 3, 192, 192]`, Object detection models for face detection have very narrow or wide detection areas, depending on the model type. Therefore, in order for FaceMesh to accurately detect feature points, the area to be cropped must not be too narrow, but must be expanded to fit the entire face as much as possible before cropping. In this case, it is necessary to crop a region that extends the actual x1, y1, x2, y2 area detected by object detection to some extent in the vertical and horizontal directions. This is the green area in the figure below. The cropped face area with a margin is resized to 192x192 without considering the aspect ratio, and then input into the FaceMesh model. If the area to be cropped is a large enough area, it may not be necessary to provide a margin. The 25% margin listed in the model card is based on `BlazeFace`.
-  - `crop_x1`: `int32 [N, 1]`, Coordinates reflecting about 25% margin on the `X1` coordinates of the object detection result.
-  - `crop_y1`: `int32 [N, 1]`, Coordinates reflecting about 25% margin on the `Y1` coordinates of the object detection result.
-  - `crop_width`: `int32 [N, 1]`, Width of face image reflecting about 25% margin to the `left` and `right` of object detection results.
-  - `crop_height`: `int32 [N, 1]`, Height of face image reflecting about 25% margin to the `top` and `bottom` object detection results.
+  - `input`: `float32 [N, 3, 192, 192]`
+
+    Object detection models for face detection have very narrow or wide detection areas, depending on the model type. Therefore, in order for FaceMesh to accurately detect feature points, the area to be cropped must not be too narrow, but must be expanded to fit the entire face as much as possible before cropping. In this case, it is necessary to crop a region that extends the actual x1, y1, x2, y2 area detected by object detection to some extent in the vertical and horizontal directions. This is the green area in the figure below. The cropped face area with a margin is resized to 192x192 without considering the aspect ratio, and then input into the FaceMesh model. If the area to be cropped is a large enough area, it may not be necessary to provide a margin. The 25% margin listed in the model card is based on `BlazeFace`. `BlazeFace` has a very small face detection area.
+  - `crop_x1`: `int32 [N, 1]`
+
+    Coordinates reflecting about 25% margin on the `X1` coordinates of the object detection result.
+  - `crop_y1`: `int32 [N, 1]`
+
+    Coordinates reflecting about 25% margin on the `Y1` coordinates of the object detection result.
+  - `crop_width`: `int32 [N, 1]`
+
+    Width of face image reflecting about 25% margin to the `left` and `right` of object detection results.
+  - `crop_height`: `int32 [N, 1]`
+
+    Height of face image reflecting about 25% margin to the `top` and `bottom` object detection results.
   
   ![icon_design drawio (2)](https://user-images.githubusercontent.com/33194443/172016342-f67b3e28-db0e-4d2d-af12-2ef38b08395b.png)
 
 - OUTPUT:
-  - `final_landmarks`: `int32 [N, 468, 3]`, `X, Y, Z`
+  - `final_landmarks`: `int32 [N, 468, 3]`
+
+    X, Y, and Z coordinates.
   - `score`: `float32 [N, 1]`
+
+    Probability value indicating whether a facial feature point has been successfully detected.
 
 # 3. Benchmark
 ## 3-1. 1 batch + ONNX + TensorRT, 10 times loop
