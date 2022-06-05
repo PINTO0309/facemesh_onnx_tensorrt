@@ -1,11 +1,13 @@
 # facemesh_onnx_tensorrt
 Verify that the post-processing merged into `FaceMesh` works correctly. The object detection model can be anything other than BlazeFace. YOLOv4 and FaceMesh committed to this repository have modified post-processing.
 
-https://user-images.githubusercontent.com/33194443/172059573-4ceafd5c-5881-4133-8367-746adb9464c5.mp4
+- YOLOv4 + Modified FaceMesh
 
-```bash
-python demo_video.py
-```
+  https://user-images.githubusercontent.com/33194443/172059573-4ceafd5c-5881-4133-8367-746adb9464c5.mp4
+
+  ```bash
+  python demo_video.py
+  ```
 
 # 1. Pre-trained model
 1. https://github.com/PINTO0309/facemesh_onnx_tensorrt/releases
