@@ -3,6 +3,10 @@ Verify that the post-processing merged into `FaceMesh` works correctly. The obje
 
 https://user-images.githubusercontent.com/33194443/172059573-4ceafd5c-5881-4133-8367-746adb9464c5.mp4
 
+```bash
+python demo_video.py
+```
+
 # 1. Pre-trained model
 https://github.com/PINTO0309/PINTO_model_zoo/tree/main/032_FaceMesh
 
