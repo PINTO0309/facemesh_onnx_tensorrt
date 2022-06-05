@@ -95,3 +95,5 @@ INFO: avg elapsed time per pred:  10.313057899475098 ms
 INFO: output_name.1: score shape: [100, 1] dtype: float32
 INFO: output_name.2: final_landmarks shape: [100, 468, 3] dtype: int32
 ```
+## 5. Structure of PINTO Special FaceMesh model
+![face_mesh_Nx3x192x192_post onnx (1)](https://user-images.githubusercontent.com/33194443/172060695-fce7db47-f103-4993-bc65-a7594c023424.png)
