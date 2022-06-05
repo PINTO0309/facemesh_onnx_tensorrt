@@ -1,5 +1,5 @@
 # facemesh_onnx_tensorrt
-Verify that the post-processing merged into `FaceMesh` works correctly. The object detection model can be anything other than BlazeFace.
+Verify that the post-processing merged into `FaceMesh` works correctly. The object detection model can be anything other than BlazeFace. YOLOv4 and FaceMesh committed to this repository have modified post-processing.
 
 https://user-images.githubusercontent.com/33194443/172059573-4ceafd5c-5881-4133-8367-746adb9464c5.mp4
 
