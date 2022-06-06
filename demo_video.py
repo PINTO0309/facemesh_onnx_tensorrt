@@ -4,6 +4,133 @@ import argparse
 import onnxruntime
 
 
+CONNECTION_LIST = [
+    [0, 267],
+    [7, 163],
+    [10, 338],
+    [13, 312],
+    [14, 317],
+    [17, 314],
+    [21, 54],
+    [33, 7],
+    [33, 246],
+    [37, 0],
+    [39, 37],
+    [40, 39],
+    [46, 53],
+    [52, 65],
+    [53, 52],
+    [54, 103],
+    [58, 132],
+    [61, 146],
+    [61, 185],
+    [63, 105],
+    [65, 55],
+    [66, 107],
+    [67, 109],
+    [70, 63],
+    [78, 95],
+    [78, 191],
+    [80, 81],
+    [81, 82],
+    [82, 13],
+    [84, 17],
+    [87, 14],
+    [88, 178],
+    [91, 181],
+    [93, 234],
+    [95, 88],
+    [103, 67],
+    [105, 66],
+    [109, 10],
+    [127, 162],
+    [132, 93],
+    [136, 172],
+    [144, 145],
+    [145, 153],
+    [146, 91],
+    [148, 176],
+    [149, 150],
+    [150, 136],
+    [152, 148],
+    [153, 154],
+    [154, 155],
+    [155, 133],
+    [157, 173],
+    [158, 157],
+    [159, 158],
+    [160, 159],
+    [161, 160],
+    [162, 21],
+    [163, 144],
+    [172, 58],
+    [173, 133],
+    [176, 149],
+    [178, 87],
+    [181, 84],
+    [185, 40],
+    [191, 80],
+    [234, 127],
+    [246, 161],
+    [249, 390],
+    [251, 389],
+    [263, 249],
+    [263, 466],
+    [267, 269],
+    [269, 270],
+    [270, 409],
+    [276, 283],
+    [282, 295],
+    [283, 282],
+    [284, 251],
+    [288, 397],
+    [293, 334],
+    [295, 285],
+    [296, 336],
+    [297, 332],
+    [300, 293],
+    [310, 415],
+    [311, 310],
+    [312, 311],
+    [314, 405],
+    [317, 402],
+    [318, 324],
+    [321, 375],
+    [323, 361],
+    [324, 308],
+    [332, 284],
+    [334, 296],
+    [338, 297],
+    [356, 454],
+    [361, 288],
+    [365, 379],
+    [373, 374],
+    [374, 380],
+    [375, 291],
+    [377, 152],
+    [378, 400],
+    [379, 378],
+    [380, 381],
+    [381, 382],
+    [382, 362],
+    [384, 398],
+    [385, 384],
+    [386, 385],
+    [387, 386],
+    [388, 387],
+    [389, 356],
+    [390, 373],
+    [397, 365],
+    [398, 362],
+    [400, 377],
+    [402, 318],
+    [405, 321],
+    [409, 291],
+    [415, 308],
+    [454, 323],
+    [466, 388],
+]
+
 def resize_and_pad(src, size, pad_color=0):
     img = src.copy()
     h, w = img.shape[:2]
@@ -194,7 +321,7 @@ def main(args):
             np_crop_height = np.asarray(crop_height, dtype=np.int32).reshape(-1,1)
 
             # FaceMesh inference
-            score, final_landmarks = face_mesh_sess.run(
+            scores, final_landmarks = face_mesh_sess.run(
                 output_names = face_mesh_output_names,
                 input_feed = {
                     face_mesh_input_name[0]: np_facemesh_input_images,
@@ -206,18 +333,28 @@ def main(args):
             )
 
             # Face Landmark drawing
-            for face in final_landmarks:
-                for keypoint in face:
-                    x = keypoint[0]
-                    y = keypoint[1]
-                    z = keypoint[2]
-                    cv2.circle(
-                        img=canvas,
-                        center=(x, y),
-                        radius=2,
-                        color=(255, 209, 0),
-                        thickness=1,
-                    )
+            for face, score in zip(final_landmarks, scores):
+                if score > 0.95:
+                    for keypoint in face:
+                        x = keypoint[0]
+                        y = keypoint[1]
+                        z = keypoint[2]
+                        cv2.circle(
+                            img=canvas,
+                            center=(x, y),
+                            radius=2,
+                            color=(255, 209, 0),
+                            thickness=1,
+                        )
+                    for start_point_idx, end_point_idx in CONNECTION_LIST:
+                        cv2.line(
+                            img=canvas,
+                            pt1=(face[start_point_idx][0], face[start_point_idx][1]),
+                            pt2=(face[end_point_idx][0], face[end_point_idx][1]),
+                            color=(0, 255, 0),
+                            thickness=1,
+                            lineType=cv2.LINE_AA,
+                        )
 
         key = cv2.waitKey(1)
         if key == 27:  # ESC
