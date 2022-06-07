@@ -57,7 +57,7 @@ Verify that the post-processing merged into `FaceMesh` works correctly. The obje
 - OUTPUT:
   - `final_landmarks`: `int32 [N, 468, 3]`
 
-    X, Y, and Z coordinates.
+    468 key points. X, Y, and Z coordinates.
   - `score`: `float32 [N, 1]`
 
     Probability value indicating whether a facial feature point has been successfully detected.
