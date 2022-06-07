@@ -7,7 +7,9 @@ Verify that the post-processing merged into `FaceMesh` works correctly. The obje
 
   https://user-images.githubusercontent.com/33194443/172077025-cfc86269-cd1f-4762-82fd-34c912365cc7.mp4
 
+  https://user-images.githubusercontent.com/33194443/172284562-4af14c8f-ef95-4abc-b6bc-0f89a57ecfde.mp4
 
+  The **`C`** and **`B`** keys on the keyboard can be used to switch between display modes.
   ```bash
   python demo_video.py
   ```
