@@ -682,19 +682,20 @@ def main(args):
     cv2.namedWindow(WINDOWS_NAME, cv2.WINDOW_NORMAL)
     cv2.resizeWindow(WINDOWS_NAME, cap_width, cap_height)
 
+    connection_points = []
+    mode_idx = DRAWING_MODES.index(drawing_mode)
+    if drawing_mode == 'full':
+        connection_points = FACEMESH_TESSELATION_FULL
+    elif drawing_mode == 'partial':
+        connection_points = FACEMESH_TESSELATION_PARTIAL
+    else:
+        connection_points = []
+
 
     while True:
         ret, frame = cap.read()
         if not ret:
             continue
-
-        connection_points = []
-        if drawing_mode == 'full':
-            connection_points = FACEMESH_TESSELATION_FULL
-        elif drawing_mode == 'partial':
-            connection_points = FACEMESH_TESSELATION_PARTIAL
-        else:
-            pass
 
         # ============================================================= Face Detection
         # Resize
@@ -822,6 +823,13 @@ def main(args):
         elif key == 99: # C
             mode_idx = DRAWING_MODES.index(drawing_mode)
             drawing_mode = DRAWING_MODES[mode_idx+1] if mode_idx+1 < len(DRAWING_MODES) else DRAWING_MODES[0]
+            if drawing_mode == 'full':
+                connection_points = FACEMESH_TESSELATION_FULL
+            elif drawing_mode == 'partial':
+                connection_points = FACEMESH_TESSELATION_PARTIAL
+            else:
+                connection_points = []
+
 
         cv2.imshow(WINDOWS_NAME, canvas)
     cv2.destroyAllWindows()
