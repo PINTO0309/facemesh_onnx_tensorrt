@@ -37,7 +37,7 @@ Verify that the post-processing merged into `FaceMesh` works correctly. The obje
 
   ![image](https://user-images.githubusercontent.com/33194443/172013054-4a826611-cb5b-4dfb-ab14-addf0acaa06e.png)
 
-- INPUT:
+- INPUT: (`N` is the number of bounding boxes for object detection. Also called batch size.)
   - `input`: `float32 [N, 3, 192, 192]`
 
     Object detection models for face detection have very narrow or wide detection areas, depending on the model type. Therefore, in order for FaceMesh to accurately detect feature points, the area to be cropped must not be too narrow, but must be expanded to fit the entire face as much as possible before cropping. In this case, it is necessary to crop a region that extends the actual x1, y1, x2, y2 area detected by object detection to some extent in the vertical and horizontal directions. This is the green area in the figure below. The cropped face area with a margin is resized to 192x192 without considering the aspect ratio, and then input into the FaceMesh model. If the area to be cropped is a large enough area, it may not be necessary to provide a margin. The 25% margin listed in the official model card is based on `BlazeFace`. `BlazeFace` has a very small face detection area.
@@ -56,7 +56,7 @@ Verify that the post-processing merged into `FaceMesh` works correctly. The obje
   
   ![icon_design drawio (2)](https://user-images.githubusercontent.com/33194443/172016342-f67b3e28-db0e-4d2d-af12-2ef38b08395b.png)
 
-- OUTPUT:
+- OUTPUT: (`N` is the number of bounding boxes for object detection. Also called batch size.)
   - `final_landmarks`: `int32 [N, 468, 3]`
 
     468 key points. X, Y, and Z coordinates.
